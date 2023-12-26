@@ -31,34 +31,37 @@ wordninja==2.0.0
 
 # 代码运行过程
 1.获取源代码CPG文件
+通过joern_parse将源代码转化为cpg.bin，然后joern_export将cpg导出到export.dot
 ```shell
 cd data_process
 python c_preprocess_source_code
 ```
-2.获取源代码CPG文件
+2.获取每个方法体的CPG文件
+ 将每个源文件的export.dot文件，通过前向后向遍历算法得到每个方法的dot格式的cpg文件
 ```shell
-
+cd data_process
+python split_export_dot.py
 ```
-3.获取源代码CPG文件
+3.设置每个方法体的networkx属性
+读取每个方法的cpg文件，设置networkx图相关属性
 ```shell
-
+cd data_process
+python data_generator.py
 ```
-4.获取源代码CPG文件
+4.symbolizer和训练集划分
+通过symbolizer将源代码归一化，并且划分训练集、验证集、测试集
 ```shell
-
+cd data_process
+python dataset_generator.py
 ```
-5.获取源代码CPG文件
+5.获取源代码的embdding，初始化图
+获取源代码的embedding作为图初始化的向量
 ```shell
-
+cd data_process
+python word_embedding.py
 ```
-6.获取源代码CPG文件
+6.程序运行
+开始训练HGT模型，通过Readout层的图级分类来识别代码漏洞
 ```shell
-
+python run.py
 ```
-
-1. 运行preprocess_source_code：通过joern_parse将源代码转化为cpg.bin，然后joern_export将cpg导出到export.dot
-2. 运行split_export_dot: 将每个源文件的export.dot文件，通过前向后向遍历算法得到每个方法的dot格式的cpg文件
-3. 运行data_generator: 读取每个方法的cpg文件，设置networkx图相关属性
-4. 运行dataset_generator：通过symbolizer将源代码归一化，并且划分训练集、验证集、测试集
-5. 运行word_embedding：获取源代码的embedding作为图初始化的向量
-6. 运行run：程序运行
