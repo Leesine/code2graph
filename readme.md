@@ -101,7 +101,7 @@ python data_generator.py
 cd data_process
 python dataset_generator.py
 ```
-5. Obtain the Source Code Embedding, Initialize Graph
+5. Obtain the Source Code Word Embedding, Initialize Graph
 <br/> Obtain the embedding of the source code to initialize the graph vectors.
 ```shell
 cd data_process
