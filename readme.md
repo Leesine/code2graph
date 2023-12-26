@@ -37,65 +37,47 @@ cd data_process
 python c_preprocess_source_code.py
 ```
 2.获取每个方法体的CPG文件
-  将每个源文件的export.dot文件，通过前向后向遍历算法得到每个方法的dot格式的cpg文件
+<br/>将每个源文件的export.dot文件，通过前向后向遍历算法得到每个方法的dot格式的cpg文件
 ```shell
 cd data_process
 python split_export_dot.py
 ```
 3.设置每个方法体的networkx属性
-  读取每个方法的cpg文件，设置networkx图相关属性
+<br/>读取每个方法的cpg文件，设置networkx图相关属性
 ```shell
 cd data_process
 python data_generator.py
 ```
 4.symbolizer和训练集划分
-  通过symbolizer将源代码归一化，并且划分训练集、验证集、测试集
+<br/>通过symbolizer将源代码归一化，并且划分训练集、验证集、测试集
 ```shell
 cd data_process
 python dataset_generator.py
 ```
 5.获取源代码的embdding，初始化图
-  获取源代码的embedding作为图初始化的向量
+<br/>获取源代码的embedding作为图初始化的向量
 ```shell
 cd data_process
 python word_embedding.py
 ```
 6. 程序运行
-  开始训练HGT模型，通过Readout层的图级分类来识别代码漏洞
+<br/>开始训练HGT模型，通过Readout层的图级分类来识别代码漏洞
 ```shell
 python run.py
 ```
+# Program Code Description
+- config/: Configuration files including data locations, model parameters, and operational parameters.
+- data_process/: Data processing classes that generate a CPG for the entire file using joern, then split it into function-level CPGs, normalize and vectorize, etc.
+- dataset/: Custom dataset-related classes, including CPGDataset.
+- model/: Implementation class for the HGT model.
+- get_metadata.py: Retrieves all node and edge types as input for the heterogeneous graph.
+- metrics.py: Used to calculate various metrics.
+- run.py: Entry point for program training startup.
+- tran.py: Initiates model training.
+- utils.py: utility classes.
 
 # Code Execution Process
-1. Obtain the CPG File of the Source Code Convert the source code to a cpg.bin file using joern_parse, then export the CPG to export.dot using joern_export.
-```shell
-cd data_process
-python c_preprocess_source_code.py
-```
-2. Get the CPG File for Each Method Body For each source file's export.dot, generate a dot format CPG file for each method using a forward-backward traversal algorithm.
-```shell
-cd data_process
-python split_export_dot.py
-```
-3. Set NetworkX Attributes for Each Method Body Read each method's CPG file and set related NetworkX graph attributes.
-```shell
-cd data_process
-python data_generator.py
-```
-4. Symbolizer and Dataset Split Normalize the source code using the symbolizer and divide the data into training set, validation set, and test set.
-```shell
-cd data_process
-python dataset_generator.py
-```
-5. Obtain the Source Code Embedding, Initialize Graph Obtain the embedding of the source code to be used as the initial vector for graph initialization.
-```shell
-cd data_process
-python word_embedding.py
-```
-
-6. Program Execution Start training the HGT (Heterogeneous Graph Transformer) model, and identify code vulnerabilities through graph-level classification in the Readout layer.
-```shell
-python run.py
-```
+1. Obtain the Source Code CPG File
+<br>Convert the source code into cpg.bin using joern_parse, then export the CPG to export.dot using joern_export.
 
 Please note that in the context of this translation, "CPG" stands for "Code Property Graph," which is a representation of the program structure that integrates control flow, data flow, and other semantic information. The term "Symbolizer" is also taken in its literal sense, assuming it's a tool or process used to normalize the source code.
