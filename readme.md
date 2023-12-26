@@ -26,7 +26,7 @@ wordninja==2.0.0
 - get_metadata.py: 获取所有节点和边类型，作为异构图输入
 - metrics.py：用于计算各类指标
 - run.py 程序训练启动入口
-- tran.py: 启动模型训练
+- train.py: 启动模型训练
 - utils.py：各种工具类
 
 # 代码运行过程
@@ -73,11 +73,43 @@ python run.py
 - get_metadata.py: Retrieves all node and edge types as input for the heterogeneous graph.
 - metrics.py: Used to calculate various metrics.
 - run.py: Entry point for program training startup.
-- tran.py: Initiates model training.
+- train.py: Initiates model training.
 - utils.py: utility classes.
 
 # Code Execution Process
 1. Obtain the Source Code CPG File
 <br>Convert the source code into cpg.bin using joern_parse, then export the CPG to export.dot using joern_export.
-
+```shell
+cd data_process
+python c_preprocess_source_code.py
+```
+2. Get the CPG File for Each Method
+<br> Generate a dot format CPG file for each method from each source file's export.dot using a forward-backward traversal algorithm.
+```shell
+cd data_process
+python split_export_dot.py
+```
+3. Set NetworkX Attributes for Each Method
+<br/>Read each method's CPG file and set related NetworkX graph attributes.
+```shell
+cd data_process
+python data_generator.py
+```
+4. Symbolizer and Dataset Split
+<br/>Normalize the source code using the symbolizer and divide the data into training, validation, and test sets.
+```shell
+cd data_process
+python dataset_generator.py
+```
+5. Obtain the Source Code Embedding, Initialize Graph
+<br/> Obtain the embedding of the source code to initialize the graph vectors.
+```shell
+cd data_process
+python word_embedding.py
+```
+6. Program Execution
+<br/> Start training the HGT model, and identify code vulnerabilities through graph-level classification in the Readout layer.
+```shell
+python run.py
+```
 Please note that in the context of this translation, "CPG" stands for "Code Property Graph," which is a representation of the program structure that integrates control flow, data flow, and other semantic information. The term "Symbolizer" is also taken in its literal sense, assuming it's a tool or process used to normalize the source code.
