@@ -30,6 +30,31 @@ wordninja==2.0.0
 - utils.py：各种工具类
 
 # 代码运行过程
+1.获取源代码CPG文件
+```shell
+cd data_process
+python c_preprocess_source_code
+```
+2.获取源代码CPG文件
+```shell
+
+```
+3.获取源代码CPG文件
+```shell
+
+```
+4.获取源代码CPG文件
+```shell
+
+```
+5.获取源代码CPG文件
+```shell
+
+```
+6.获取源代码CPG文件
+```shell
+
+```
 
 1. 运行preprocess_source_code：通过joern_parse将源代码转化为cpg.bin，然后joern_export将cpg导出到export.dot
 2. 运行split_export_dot: 将每个源文件的export.dot文件，通过前向后向遍历算法得到每个方法的dot格式的cpg文件
