@@ -60,8 +60,41 @@ python dataset_generator.py
 cd data_process
 python word_embedding.py
 ```
-6.程序运行
-开始训练HGT模型，通过Readout层的图级分类来识别代码漏洞
+6. 程序运行 开始训练HGT模型，通过Readout层的图级分类来识别代码漏洞
 ```shell
 python run.py
 ```
+
+Code Execution Process
+1. Obtain the CPG File of the Source Code Convert the source code to a cpg.bin file using joern_parse, then export the CPG to export.dot using joern_export.
+```shell
+cd data_process
+python c_preprocess_source_code.py
+```
+2. Get the CPG File for Each Method Body For each source file's export.dot, generate a dot format CPG file for each method using a forward-backward traversal algorithm.
+```shell
+cd data_process
+python split_export_dot.py
+```
+3. Set NetworkX Attributes for Each Method Body Read each method's CPG file and set related NetworkX graph attributes.
+```shell
+cd data_process
+python data_generator.py
+```
+4. Symbolizer and Dataset Split Normalize the source code using the symbolizer and divide the data into training set, validation set, and test set.
+```shell
+cd data_process
+python dataset_generator.py
+```
+5. Obtain the Source Code Embedding, Initialize Graph Obtain the embedding of the source code to be used as the initial vector for graph initialization.
+```shell
+cd data_process
+python word_embedding.py
+```
+
+6. Program Execution Start training the HGT (Heterogeneous Graph Transformer) model, and identify code vulnerabilities through graph-level classification in the Readout layer.
+```shell
+python run.py
+```
+
+Please note that in the context of this translation, "CPG" stands for "Code Property Graph," which is a representation of the program structure that integrates control flow, data flow, and other semantic information. The term "Symbolizer" is also taken in its literal sense, assuming it's a tool or process used to normalize the source code.
