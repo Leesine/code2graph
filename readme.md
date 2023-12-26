@@ -1,6 +1,6 @@
-# [本项目代码是DSHGT论文的实现](https://arxiv.org/pdf/2306.01376.pdf)
+# [DSHGT](https://arxiv.org/pdf/2306.01376.pdf)
 
-# 安装依赖
+# Requirements
 
 ```
 beautifulsoup4==4.12.2
@@ -17,54 +17,6 @@ tqdm==4.64.1
 wordninja==2.0.0
 ```
 
-# 程序代码说明
-
-- config/:  配置文件，数据位置和模型参数、运行参数
-- data_process/:  数据处理类，通过joern整个文件生成cpg，然后拆分成function级别的cpg，归一化和向量化等。
-- dataset/: 自定义数据集相关类，包括CPGDataset
-- model/: HGT模型实现类
-- get_metadata.py: 获取所有节点和边类型，作为异构图输入
-- metrics.py：用于计算各类指标
-- run.py 程序训练启动入口
-- train.py: 启动模型训练
-- utils.py：各种工具类
-
-# 代码运行过程
-1.获取源代码CPG文件
-<br/>通过joern_parse将源代码转化为cpg.bin，然后joern_export将cpg导出到export.dot
-```shell
-cd data_process
-python c_preprocess_source_code.py
-```
-2.获取每个方法体的CPG文件
-<br/>将每个源文件的export.dot文件，通过前向后向遍历算法得到每个方法的dot格式的cpg文件
-```shell
-cd data_process
-python split_export_dot.py
-```
-3.设置每个方法体的networkx属性
-<br/>读取每个方法的cpg文件，设置networkx图相关属性
-```shell
-cd data_process
-python data_generator.py
-```
-4.symbolizer和训练集划分
-<br/>通过symbolizer将源代码归一化，并且划分训练集、验证集、测试集
-```shell
-cd data_process
-python dataset_generator.py
-```
-5.获取源代码的embdding，初始化图
-<br/>获取源代码的embedding作为图初始化的向量
-```shell
-cd data_process
-python word_embedding.py
-```
-6. 程序运行
-<br/>开始训练HGT模型，通过Readout层的图级分类来识别代码漏洞
-```shell
-python run.py
-```
 # Program Code Description
 - config/: Configuration files including data locations, model parameters, and operational parameters.
 - data_process/: Data processing classes that generate a CPG for the entire file using joern, then split it into function-level CPGs, normalize and vectorize, etc.
@@ -113,3 +65,14 @@ python word_embedding.py
 python run.py
 ```
 Please note that in the context of this translation, "CPG" stands for "Code Property Graph," which is a representation of the program structure that integrates control flow, data flow, and other semantic information. The term "Symbolizer" is also taken in its literal sense, assuming it's a tool or process used to normalize the source code.
+
+
+If you find DSHGT helpful, please consider citing our work:
+```
+@article{zhang2023dshgt,
+  title={DSHGT: Dual-Supervisors Heterogeneous Graph Transformer--A pioneer study of using heterogeneous graph learning for detecting software vulnerabilities},
+  author={Zhang, Tiehua and Xu, Rui and Zhang, Jianping and Liu, Yuze and Chen, Xin and Huang, Xiaowei and Yin, Jun and Zheng, Xi},
+  journal={arXiv preprint arXiv:2306.01376},
+  year={2023}
+}
+```
