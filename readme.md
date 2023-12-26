@@ -65,7 +65,7 @@ python word_embedding.py
 python run.py
 ```
 
-Code Execution Process
+# Code Execution Process
 1. Obtain the CPG File of the Source Code Convert the source code to a cpg.bin file using joern_parse, then export the CPG to export.dot using joern_export.
 ```shell
 cd data_process
