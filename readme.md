@@ -34,7 +34,7 @@ wordninja==2.0.0
 通过joern_parse将源代码转化为cpg.bin，然后joern_export将cpg导出到export.dot
 ```shell
 cd data_process
-python c_preprocess_source_code
+python c_preprocess_source_code.py
 ```
 2.获取每个方法体的CPG文件
  将每个源文件的export.dot文件，通过前向后向遍历算法得到每个方法的dot格式的cpg文件
