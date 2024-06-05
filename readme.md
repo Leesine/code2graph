@@ -71,7 +71,7 @@ If you find DSHGT helpful, please consider citing our work:
 ```
 @article{zhang2023dshgt,
   title={DSHGT: Dual-Supervisors Heterogeneous Graph Transformer--A pioneer study of using heterogeneous graph learning for detecting software vulnerabilities},
-  author={Zhang, Tiehua and Xu, Rui and Zhang, Jianping and Liu, Yuze and Chen, Xin and Huang, Xiaowei and Yin, Jun and Zheng, Xi},
+  author={Zhang, Tiehua and Xu, Rui and Zhang, Jianping and Liu, Yuze and Chen, Xin and Yin, Jun and Zheng, Xi},
   journal={arXiv preprint arXiv:2306.01376},
   year={2023}
 }
