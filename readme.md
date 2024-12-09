@@ -69,10 +69,23 @@ Please note that in the context of this translation, "CPG" stands for "Code Prop
 
 If you find DSHGT helpful, please consider citing our work:
 ```
-@article{zhang2023dshgt,
-  title={DSHGT: Dual-Supervisors Heterogeneous Graph Transformer--A pioneer study of using heterogeneous graph learning for detecting software vulnerabilities},
-  author={Zhang, Tiehua and Xu, Rui and Zhang, Jianping and Liu, Yuze and Chen, Xin and Yin, Jun and Zheng, Xi},
-  journal={arXiv preprint arXiv:2306.01376},
-  year={2023}
+@article{10.1145/3674729,
+author = {Zhang, Tiehua and Xu, Rui and Zhang, Jianping and Liu, Yuze and Chen, Xin and Yin, Jun and Zheng, Xi},
+title = {DSHGT: Dual-Supervisors Heterogeneous Graph Transformer—A Pioneer Study of Using Heterogeneous Graph Learning for Detecting Software Vulnerabilities},
+year = {2024},
+issue_date = {November 2024},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {33},
+number = {8},
+issn = {1049-331X},
+url = {https://doi.org/10.1145/3674729},
+doi = {10.1145/3674729},
+abstract = {Vulnerability detection is a critical problem in software security and attracts growing attention both from academia and industry. Traditionally, software security is safeguarded by designated rule-based detectors that heavily rely on empirical expertise, requiring tremendous effort from software experts to generate rule repositories for large code corpus. Recent advances in deep learning, especially Graph Neural Networks (GNN), have uncovered the feasibility of automatic detection of a wide range of software vulnerabilities. However, prior learning-based works only break programs down into a sequence of word tokens for extracting contextual features of codes, or apply GNN largely on homogeneous graph representation (e.g., AST) without discerning complex types of underlying program entities (e.g., methods, variables). In this work, we are one of the first to explore heterogeneous graph representation in the form of Code Property Graph and adapt a well-known heterogeneous graph network with a dual-supervisor structure for the corresponding graph learning task. Using the prototype built, we have conducted extensive experiments on both synthetic datasets and real-world projects. Compared with the state-of-the-art baselines, the results demonstrate superior performance in vulnerability detection (average F1 improvements over 10\% in real-world projects) and language-agnostic transferability from C/C ({+}{+}) to other programming languages (average F1 improvements over 11\%).},
+journal = {ACM Trans. Softw. Eng. Methodol.},
+month = nov,
+articleno = {202},
+numpages = {31},
+keywords = {Vulnerability detection, heterogeneous graph learning, code property graph (CPG)}
 }
 ```
